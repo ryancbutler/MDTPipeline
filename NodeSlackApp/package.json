@@ -1,0 +1,25 @@
+{
+  "name": "nodeslackapp",
+  "version": "1.0.0",
+  "description": "Slash command for slack to deploy MDT sequences",
+  "main": "app.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "request": "^2.83.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Slack"
+  ],
+  "author": "Ryan Butler",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ryancbutler/MDTPipeline.git"
+  }
+}
