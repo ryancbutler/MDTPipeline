@@ -52,6 +52,7 @@ Skiptasksequence="YES";
 WindowsUpdate="True";
 FinishAction="Shutdown";
 GitBranch=$env:imagetype;
+#KMS Key
 ProductKey="NPPR9-FWDCX-D2C8J-H872K-2YT43";
 #JoinDomain
 JoinDomain="lab.local";
@@ -61,14 +62,14 @@ DomainAdminPassword=$env:domainadmin_PSW;
 MachineObjectOU="OU=image,DC=lab,DC=local";
 }
 
-#Create MDT row in DB
+#Create MDT entry in DB
 new-mdtcomputer -macAddress $mac -settings $pcsettings -description $vmname
 $slackChannelurl = $env:slackChannelurl
 $slackurl = $env:responseurl
 #Send SLACK status
 Send-XDslackmsg -slackurl $slackChannelurl -msg "<@$env:whosubmitted> deployed $vmname for $env:imagetype (Job: $env:BUILD_NUMBER)"
 Send-XDslackmsg -slackurl $slackurl -msg "SUCCESS! Deployed $vmname for $env:imagetype (Job: $env:BUILD_NUMBER) check out <#CHANNELID> for status"
-#Boot VM
+#Boot VM to kick off MDT process
 Start-VM $vm -Confirm:$false
 
 #Get status of job
@@ -120,5 +121,5 @@ $output = @{
 }
 
 $object = New-Object –TypeName PSObject –Prop $output
-#creates temp file for other jenkins stage
+#creates temp file for other jenkins stage on DDC
 $object|Export-Csv "C:\temp\frombuild.csv" -Force -NoTypeInformation

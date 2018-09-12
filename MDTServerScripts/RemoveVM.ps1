@@ -1,6 +1,7 @@
 ﻿Import-Module "D:\MDTProduction\ServerScripts\Send-XDSlackMSG.ps1"
 try{
-$imports = Import-Csv "C:\temp\frombuild.csv"
+    #Grabs temp file with VM name
+    $imports = Import-Csv "C:\temp\frombuild.csv"
 }
 catch
 {
